@@ -1,5 +1,6 @@
 import { Position } from "../types/position";
 import { Global } from "./Global";
+import { Player } from "./Player";
 import { Sprite } from "./Sprite";
 
 export interface GameLevelData {
@@ -7,9 +8,14 @@ export interface GameLevelData {
   name: string;
   id: string;
   no: number;
+  door: {
+    next: Position;
+    prev: Position;
+  };
   collisions: number[];
   collisionOffset: number;
   collisionSize: number;
+  bots: Player[];
 }
 export class CollisionBlock {
   position: Position;
@@ -29,7 +35,7 @@ export class CollisionBlock {
   }
   draw(hidden = true) {
     if (!hidden) {
-      Global.ctx.fillStyle = "rgba(255, 0, 0,0.2)";
+      Global.ctx.fillStyle = "rgba(255, 0, 0,0)";
     }
     Global.ctx.fillRect(this.position.x, this.position.y, this.size, this.size);
   }
@@ -43,6 +49,7 @@ export class GameLevel
   path: string;
   no: number;
   id: string;
+  bots: Player[];
   collisionSize: number;
   collisionOffset: number;
   collisions: CollisionBlock[];
@@ -56,6 +63,7 @@ export class GameLevel
     );
     this.collisions = collisions;
   }
+  door: { next: Position; prev: Position };
 
   drawCollisionBlocks() {
     this.collisions.forEach((collision) => {

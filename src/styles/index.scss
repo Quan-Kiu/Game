@@ -4,14 +4,88 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow: hidden;
+  min-height: 100dvh;
+  max-height: 100dvh;
+  min-width: 100dvw;
+  max-width: 100dvh;
+}
+
 body {
+  overflow: hidden;
   background-color: black;
   display: flex;
   justify-content: center;
+  opacity: 0;
   align-items: center;
   min-height: 100dvh;
+  max-height: 100dvh;
+  min-width: 100dvw;
+  max-width: 100dvh;
+}
+.controls {
+  position: fixed;
+  color: white;
+  right: 5%;
+  bottom: 0;
+  width: 200px;
+  z-index: 1999;
+  height: 200px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  user-select: none;
+
+  div {
+    position: absolute;
+    font-size: 30px;
+    cursor: pointer;
+    border-radius: 100%;
+    transform-origin: center;
+
+    &#A {
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%) rotate(180deg);
+    }
+    &#Q {
+      left: 8%;
+      top: 15%;
+      transform: translateY(-50%) rotate(225deg);
+    }
+    &#E {
+      right: 8%;
+      top: 15%;
+      transform: translateY(-50%) rotate(-45deg);
+    }
+    &#attack {
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(180deg);
+    }
+    &#D {
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &#W {
+      right: 50%;
+      top: 0;
+      transform: translateX(50%) rotate(-90deg);
+    }
+    &#bottom {
+      right: 50%;
+      bottom: 0;
+      transform: translateX(50%) rotate(90deg);
+    }
+  }
 }
 
 canvas {
   border: thin solid white;
+}
+.tools {
+  position: fixed;
+  top: 0;
+  right: 50%;
 }
